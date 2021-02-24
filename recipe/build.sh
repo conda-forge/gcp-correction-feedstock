@@ -20,4 +20,4 @@ else
     meson "${meson_options[@]}"
 fi
 
-ninja test install
+ninja install
