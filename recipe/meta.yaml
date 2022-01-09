@@ -10,20 +10,18 @@ source:
   sha256: 26c4d889062412c377459a4a939cbe12527dcdc5d89c99cf607f589ec86c5fe4
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}  # [osx]
     - {{ compiler('fortran') }}
-    - meson >=0.51
-    - meson <0.56
+    - meson
     - ninja
     - asciidoctor
-  host:
     - llvm-openmp  # [osx]
-    - libgomp  # [linux and not aarch64]
+    - libgomp  # [linux]
 
 
 test:
