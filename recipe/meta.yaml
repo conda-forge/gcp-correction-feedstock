@@ -10,16 +10,23 @@ source:
   sha256: 26c4d889062412c377459a4a939cbe12527dcdc5d89c99cf607f589ec86c5fe4
 
 build:
-  number: 1
-  skip: true  # [win]
+  number: 2
+  script:
+    - set -ex  # [unix]
+    - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib} --buildtype=release  # [unix]
+    - meson setup _build --prefix=%PREFIX% --libdir=lib --buildtype=release  # [win]
+    - meson compile -C _build
+    - meson test -C _build --no-rebuild --print-errorlogs  # [build_platform == target_platform]
+    - meson install -C _build --no-rebuild
 
 requirements:
   build:
     - {{ compiler('c') }}  # [osx]
-    - {{ compiler('fortran') }}
+    - {{ compiler('fortran') }}  # [unix]
+    - {{ compiler('m2w64_fortran') }}  # [win]
     - meson
     - ninja
-    - asciidoctor
+    - asciidoctor  # [unix]
     - llvm-openmp  # [osx]
     - libgomp  # [linux]
 
