@@ -8,13 +8,15 @@ package:
 source:
   url: https://github.com/grimme-lab/gcp/archive/v{{ version }}.tar.gz
   sha256: 26c4d889062412c377459a4a939cbe12527dcdc5d89c99cf607f589ec86c5fe4
+  patches:
+    - wrap.patch
 
 build:
-  number: 2
+  number: 3
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib} --buildtype=release  # [unix]
-    - meson setup _build --prefix=%PREFIX% --libdir=lib --buildtype=release  # [win]
+    - meson setup _build --prefix=%PREFIX% --libdir=lib --buildtype=release --pkg-config-path=%PREFIX%\lib\pkgconfig  # [win]
     - meson compile -C _build
     - meson test -C _build --no-rebuild --print-errorlogs  # [build_platform == target_platform]
     - meson install -C _build --no-rebuild
@@ -29,6 +31,10 @@ requirements:
     - asciidoctor  # [unix]
     - llvm-openmp  # [osx]
     - libgomp  # [linux]
+  host:
+    - mctc-lib
+  run:
+    - {{ pin_compatible('mctc-lib', max_pin='x.x') }}
 
 
 test:
