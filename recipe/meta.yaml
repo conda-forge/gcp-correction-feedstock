@@ -1,5 +1,5 @@
 {% set name = "gcp-correction" %}
-{% set version = "2.3.1" %}
+{% set version = "2.3.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/grimme-lab/gcp/archive/v{{ version }}.tar.gz
-  sha256: 26c4d889062412c377459a4a939cbe12527dcdc5d89c99cf607f589ec86c5fe4
+  sha256: f8bb203c5af57e942c3f02967d1970b2fdcfcd2bb8fc60b999c8b4226324a730
   patches:
     - wrap.patch
 
 build:
-  number: 4
+  number: 0
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib}  # [unix]
