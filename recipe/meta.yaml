@@ -12,7 +12,7 @@ source:
     - wrap.patch
 
 build:
-  number: 0
+  number: 1
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib}  # [unix]
