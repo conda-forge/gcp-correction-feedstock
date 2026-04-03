@@ -12,7 +12,7 @@ source:
     - wrap.patch
 
 build:
-  number: 1
+  number: 2
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib}  # [unix]
@@ -37,8 +37,9 @@ requirements:
   run:
     - {{ pin_compatible('mctc-lib', max_pin='x.x') }}
 
-
 test:
+  requires:
+    - dftd3-python >=1.3.0  # checking co-installability
   commands:
     - mctc-gcp --version
 
