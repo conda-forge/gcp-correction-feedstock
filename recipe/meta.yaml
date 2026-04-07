@@ -33,6 +33,7 @@ requirements:
     - {{ compiler('m2w64_fortran') }}  # [win]
     - meson
     - ninja
+    - pkg-config
     - asciidoctor  # [unix]
     - llvm-openmp  # [osx]
   host:
@@ -42,6 +43,7 @@ requirements:
 
 test:
   requires:
+    - pkg-config
     - dftd3-python >=1.3.0  # checking co-installability
   commands:
     - mctc-gcp --version
