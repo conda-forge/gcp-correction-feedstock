@@ -12,7 +12,7 @@ source:
     - wrap.patch
 
 build:
-  number: 2
+  number: 3
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib} -Ddefault_library=shared  # [unix]
@@ -26,11 +26,9 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}  # [unix]
-    - {{ stdlib("m2w64_c") }}  # [win]
-    - {{ compiler('c') }}  # [osx]
-    - {{ compiler('fortran') }}  # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ stdlib("c") }}
+    - {{ compiler("c") }}
+    - {{ compiler("fortran") }}
     - meson
     - ninja
     - pkg-config
