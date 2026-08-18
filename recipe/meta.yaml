@@ -1,5 +1,5 @@
 {% set name = "gcp-correction" %}
-{% set version = "2.3.2" %}
+{% set version = "2.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,11 @@ package:
 
 source:
   url: https://github.com/grimme-lab/gcp/archive/v{{ version }}.tar.gz
-  sha256: f8bb203c5af57e942c3f02967d1970b2fdcfcd2bb8fc60b999c8b4226324a730
+  sha256: 7b1fa130d9f8734b6aa4fcc45b54c10ab022a6ffe0359a8bec37144d1c557e7f
   patches:
-    - wrap.patch
 
 build:
-  number: 2
+  number: 0
   script:
     - set -ex  # [unix]
     - meson setup _build ${MESON_ARGS:---prefix=${PREFIX} --libdir=lib} -Ddefault_library=shared  # [unix]
@@ -40,6 +39,7 @@ requirements:
     - libgomp  # [linux]
     - llvm-openmp  # [osx]
     - mctc-lib-devel * {{ module_abi }}_*
+    - simple-dftd3-devel >=1.5 {{ module_abi }}_*
 
 test:
   requires:
