@@ -9,7 +9,6 @@ source:
   url: https://github.com/grimme-lab/gcp/archive/v{{ version }}.tar.gz
   sha256: 7b1fa130d9f8734b6aa4fcc45b54c10ab022a6ffe0359a8bec37144d1c557e7f
   patches:
-    - wrap.patch
 
 build:
   number: 0
