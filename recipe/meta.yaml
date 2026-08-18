@@ -40,6 +40,7 @@ requirements:
     - libgomp  # [linux]
     - llvm-openmp  # [osx]
     - mctc-lib-devel * {{ module_abi }}_*
+    - simple-dftd3-devel >=1.5 {{ module_abi }}_*
 
 test:
   requires:
